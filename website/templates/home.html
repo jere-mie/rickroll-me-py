@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <div class="container" style="background-color:white;">
+    <h1 class="center display-4">Custom Metadata URL Redirect Prank</h1>
+    <p class="lead center">Basically the easiest way to make convincing rick rolls </p>
+    <hr class="my-4">
+    <p class="center">Try it out now, create a new redirect and then paste the link in somewhere such as discord to fool your friends!</p>
+    <p class="center"><a class="btn btn-outline-secondary btn-lg" href="{{ url_for('new') }}" role="button">New Redirect</a></p>
+  </div>
+
+
+
+{% endblock %}

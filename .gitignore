@@ -1,0 +1,4 @@
+secrets.json
+venv/
+website/__pycache__/
+website/site.db
