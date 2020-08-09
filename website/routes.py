@@ -9,6 +9,10 @@ from website.models import Link
 def home():
     return render_template('home.html')
 
+@app.route('/about', methods=['GET'])
+def about():
+    return render_template('about.html')
+
 
 
 @app.route('/new', methods=['GET', 'POST'])
@@ -16,9 +20,11 @@ def new():
     form = LinkForm()
     if form.validate_on_submit():
         link = Link(link=form.link.data, title=form.title.data, name = form.name.data, desc=form.desc.data, image=form.image.data, url=form.url.data)
+        goodlink = link.link.replace(' ','-')
+        link.link = goodlink
         db.session.add(link)
         db.session.commit()
-        flash(f'Created link exampledomain.tld/{form.link.data}!', 'success')
+        flash(f'Created link allnewsnow.online/{link.link}!', 'success')
         return redirect(url_for('home'))
     return render_template('new.html', form=form, legend='New Link')
 

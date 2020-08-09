@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <div class="container" style="background-color:white;">
+    <h1 class="center display-4">How It All Works</h1>
+    <p class="lead center">Everything You Need to Know to Get Started!</p>
+    <hr class="my-4">
+    <br><br>
+    <h2 class="center thin">What is This?</h2>
+    <p class="center">This is an app that let's you set up custom links that redirect to your website of choice.</p>
+    <p class="center">Think of bit.ly, except you can customize your own link to be whatever you want!</p>
+    <br>
+    <h4 class="center thin">What Makes This App Special?</h4>
+    <p class="center">This application not only allows you to customize your redirect link, but also the <b>meta data</b> of the link.</p>
+    <p class="center">This makes it especially useful for pranks, namely the <b>Rick Roll</b> meme, where you can send someone a link that says, perhaps, that an interesting news story has come out, when in reality they click the link and it redirects to an 80's pop song.</p>
+
+    <br><br><br>
+    <h2 class="center thin">Ok, I'm In, How Do I Get Started?</h2>
+    <p class="center">First, you'll need to go to the <a href="{{ url_for('new') }}">new link</a> page, where you can customize a new link.</p>
+    <p class="center">You'll be greeted by a form with the following fields:</p>
+    <ul>
+        <li><h4 class="thin">URL to Redirect To</h4>This is the place where you put the destination of your redirect, such as an 80's music video</li>
+        <br><li><h4 class="thin">Custom URL Ending</h4>This will be the part after the domain, like so: allnewsnow.online/l/[your_link_here]</li>
+        <br><li><h4 class="thin">Site Name</h4>The name of the supposed website you want to use, for example, "News Today"</li>
+        <br><li><h4 class="thin">Site Title</h4>This would be the title of an article or such, for example, "New iPhone Ditches Charging Port"</li>
+        <br><li><h4 class="thin">Description</h4>A description of what's on the website, usually one or two sentences</li>
+        <br><li><h4 class="thin">Link to Image</h4>This is the url to the meta image you want displayed when someone pastes your link in a chatroom or so. You can often copy the url of images from places like Google Images</li>
+    </ul>
+    <br><br>
+    <h2 class="thin center">Now It's Time to Create Your First Link!</h2>
+    <br>
+    <p class="center"><a class="btn btn-outline-secondary btn-lg" href="{{ url_for('new') }}" role="button">New Redirect</a></p>
+
+    <!-- <p class="center">
+      <img src="{{ url_for('static', filename='logo.png') }}" height="250px">
+    </p> -->
+
+  </div>
+
+
+
+{% endblock %}
