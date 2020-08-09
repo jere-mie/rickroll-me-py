@@ -13,3 +13,9 @@ body{
 .thin{
     font-weight:200;
 }
+
+.pushed{
+    background-color: rgb(247, 247, 247);
+    margin: 15px;
+    padding: 15px;
+}

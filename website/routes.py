@@ -13,6 +13,11 @@ def home():
 def about():
     return render_template('about.html')
 
+@app.route('/admin', methods=['GET'])
+def admin():
+    links = Link.query.all()
+    return render_template('admin.html', links=links)
+
 
 
 @app.route('/new', methods=['GET', 'POST'])
@@ -28,7 +33,7 @@ def new():
         return redirect(url_for('home'))
     return render_template('new.html', form=form, legend='New Link')
 
-@app.route('/<link_url>/edit', methods=['GET', 'POST'])
+@app.route('/l/<link_url>/edit', methods=['GET', 'POST'])
 def edit(link_url):
     link = Link.query.filter_by(link=link_url).first()
     form = LinkForm()
