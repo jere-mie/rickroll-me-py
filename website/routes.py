@@ -24,7 +24,7 @@ def new():
         link.link = goodlink
         db.session.add(link)
         db.session.commit()
-        flash(f'Created link allnewsnow.online/{link.link}!', 'success')
+        flash(f'Created link http://allnewsnow.online/l/{link.link}', 'success')
         return redirect(url_for('home'))
     return render_template('new.html', form=form, legend='New Link')
 
