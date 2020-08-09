@@ -8,8 +8,15 @@
     <meta property="og:image" content="{{ image }}" />
     
     <title>Redirecting</title>
-    <meta http-equiv="refresh" content="0; URL={{ url }}">
+    <!-- <meta http-equiv="refresh" content="0; URL={{ url }}"> -->
   </head>
+  <body>
+    <script>
+    <script>
+      window.location.href="{{ url }}"
+    </script>
 
-  <link rel="canonical" href="{{ url }}">
+    </script>
+  </body>
+  <!-- <link rel="canonical" href="{{ url }}"> -->
 </html>
