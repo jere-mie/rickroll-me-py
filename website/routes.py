@@ -62,3 +62,11 @@ def edit(link_url):
 def redir(link_url):
     link = Link.query.filter_by(link=link_url).first()
     return render_template('redir.html', title=link.title, name=link.name, desc=link.desc, image=link.image, url=link.url)
+
+@app.route('/l/<link_url>/delete', methods=['GET','POST'])
+def delete(link_url):
+    link = Link.query.filter_by(link=link_url).first()
+    db.session.delete(link)
+    db.session.commit()
+    flash('Successfully deleted link!', 'success')
+    return redirect(url_for('home'))

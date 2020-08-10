@@ -2,7 +2,7 @@ from website import db
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    link = db.Column(db.String(100), nullable=False)
+    link = db.Column(db.String(100), unique=True, nullable=False)
     url = db.Column(db.String(100), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     name = db.Column(db.String(100), nullable=False)

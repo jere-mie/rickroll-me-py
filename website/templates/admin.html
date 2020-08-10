@@ -9,7 +9,8 @@
     <div class="pushed">
         <p>https://allnewsnow.online/l/{{ link.link }}</p>
         <p>{{ link.url }}</p>
-        <a href="https://allnewsnow.online/l/{{ link.link }}/edit" class="btn btn-outline-secondary">Edit</a>
+        <a href="{{ url_for('edit', link_url=link.link) }}" class="btn btn-outline-secondary">Edit</a>
+        <a href="{{ url_for('delete', link_url=link.link) }}" class="btn btn-outline-danger">Delete</a>
     </div>
     <hr class="my-4">    
     {% endfor %}
