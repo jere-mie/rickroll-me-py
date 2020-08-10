@@ -26,6 +26,11 @@ def new():
     if form.validate_on_submit():
         link = Link(link=form.link.data, title=form.title.data, name = form.name.data, desc=form.desc.data, image=form.image.data, url=form.url.data)
         goodlink = link.link.replace(' ','-')
+        goodlink = goodlink.replace('/','_')
+        goodlink = goodlink.replace(':','-')
+        goodlink = goodlink.replace('.','-')
+        goodlink = goodlink.replace('?','-')
+        goodlink = goodlink.replace(',','-')
         link.link = goodlink
         db.session.add(link)
         db.session.commit()

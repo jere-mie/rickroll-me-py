@@ -14,6 +14,12 @@ class LinkForm(FlaskForm):
     
     def validate_link(self, link):
         goodlink = link.data.replace(' ','-')
+        goodlink = goodlink.replace('/','_')
+        goodlink = goodlink.replace(':','-')
+        goodlink = goodlink.replace('.','-')
+        goodlink = goodlink.replace('?','-')
+        goodlink = goodlink.replace(',','-')
+
         alink = Link.query.filter_by(link=goodlink).first()
         if alink:
             raise ValidationError('That link is already taken')
