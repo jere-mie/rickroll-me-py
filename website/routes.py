@@ -41,7 +41,7 @@ def new():
 @app.route('/l/<link_url>/edit', methods=['GET', 'POST'])
 def edit(link_url):
     link = Link.query.filter_by(link=link_url).first()
-    form = LinkForm()
+    form = EditForm()
     if form.validate_on_submit():
         link.link = form.link.data
         link.url = form.url.data

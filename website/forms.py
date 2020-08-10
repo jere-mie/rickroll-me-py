@@ -23,3 +23,12 @@ class LinkForm(FlaskForm):
         alink = Link.query.filter_by(link=goodlink).first()
         if alink:
             raise ValidationError('That link is already taken')
+
+class EditForm(FlaskForm):
+    link = StringField('Custom URL Ending', validators=[DataRequired()])
+    url = StringField('URL to Redirect To', validators=[DataRequired()])
+    title = StringField('Site Title', validators=[DataRequired()])
+    name = StringField('Site Name', validators=[DataRequired()])
+    desc = StringField('Description', validators=[DataRequired()])
+    image = StringField('Link to Image', validators=[DataRequired()])    
+    submit = SubmitField('Submit')
