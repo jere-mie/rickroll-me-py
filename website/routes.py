@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from website import app, db
-from website.forms import LinkForm
+from website.forms import LinkForm, EditForm
 from website.models import Link
 
 
