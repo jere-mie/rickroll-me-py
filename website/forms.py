@@ -5,7 +5,7 @@ from website.models import Link
 
 class LinkForm(FlaskForm):
     link = StringField('Custom URL Ending', validators=[DataRequired()])
-    url = StringField('URL to Redirect To', validators=[DataRequired()])
+    # url = StringField('URL to Redirect To', validators=[DataRequired()])
     title = StringField('Site Title', validators=[DataRequired()])
     name = StringField('Site Name', validators=[DataRequired()])
     desc = StringField('Description', validators=[DataRequired()])
@@ -26,7 +26,7 @@ class LinkForm(FlaskForm):
 
 class EditForm(FlaskForm):
     link = StringField('Custom URL Ending', validators=[DataRequired()])
-    url = StringField('URL to Redirect To', validators=[DataRequired()])
+    # url = StringField('URL to Redirect To', validators=[DataRequired()])
     title = StringField('Site Title', validators=[DataRequired()])
     name = StringField('Site Name', validators=[DataRequired()])
     desc = StringField('Description', validators=[DataRequired()])

@@ -24,7 +24,7 @@ def admin():
 def new():
     form = LinkForm()
     if form.validate_on_submit():
-        link = Link(link=form.link.data, title=form.title.data, name = form.name.data, desc=form.desc.data, image=form.image.data, url=form.url.data)
+        link = Link(link=form.link.data, title=form.title.data, name = form.name.data, desc=form.desc.data, image=form.image.data, url='https://www.youtube.com/watch?v=dQw4w9WgXcQ')
         goodlink = link.link.replace(' ','-')
         goodlink = goodlink.replace('/','_')
         goodlink = goodlink.replace(':','-')
@@ -44,7 +44,7 @@ def edit(link_url):
     form = EditForm()
     if form.validate_on_submit():
         link.link = form.link.data
-        link.url = form.url.data
+        link.url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
         link.title = form.title.data
         link.name = form.name.data
         link.desc = form.desc.data
@@ -55,7 +55,7 @@ def edit(link_url):
         return redirect(url_for('home'))
     elif request.method == 'GET':
         form.link.data = link.link
-        form.url.data = link.url
+        # form.url.data = link.url
         form.title.data = link.title
         form.name.data = link.name
         form.desc.data = link.desc
