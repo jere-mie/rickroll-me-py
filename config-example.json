@@ -1,0 +1,6 @@
+{
+    "secret_key":"Secret Goes Here",
+    "port":"5001",
+    "domain":"http://127.0.0.1:5000",
+    "password":"password"
+}

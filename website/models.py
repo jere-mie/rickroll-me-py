@@ -1,5 +1,5 @@
 from website import db
-
+from flask_login import UserMixin
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     link = db.Column(db.String(100), unique=True, nullable=False)
@@ -11,3 +11,6 @@ class Link(db.Model):
     
     def __repr__(self):
         return f"Post: {self.title}, Posted By: {self.author}"
+
+class User(UserMixin):
+    pass

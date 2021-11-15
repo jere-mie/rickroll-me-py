@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Custom Metadata URL Redirect</title>
+        <title>Rickroll Me</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Metadata -->
-        <meta property="og:site_name" content="Metadata Prank" />
-        <meta property="og:title" content="Custom Metadata URL Redirect Prank" />
-        <meta property="og:description" content="Make custom url redirects with custom site name, site title, description, and image" />
+        <meta property="og:site_name" content="Rickroll Me" />
+        <meta property="og:title" content="Rickroll Me URL Redirect Prank App" />
+        <meta property="og:description" content="Make custom Rickroll redirects with custom site name, site title, description, and image" />
         <meta property="og:image" content="{{ url_for('static', filename='logo.png') }}" />
         <meta property="og:type" content="website" />
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"> 
@@ -19,7 +19,7 @@
     <body>
         <!-- https://getbootstrap.com/docs/4.3/components/ -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='logo.png') }}" height="50px;"></a>
+            <a class="navbar-brand" href="{{ url_for('home')  }}"><img src="{{ url_for('static', filename='logo.png') }}" height="50px;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,6 +34,14 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('new') }}">New Redirect</a>
                 </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('admin') }}">Admin Panel</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+                {% endif %}
               </ul>
             </div>
         </nav>

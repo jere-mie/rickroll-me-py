@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h3 style="text-align: center;">Login Here</h3>
+<div class="container">
+    <form method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.password.label(class="form-control-label") }}
+            {{ form.password(class="form-control") }}
+        </div>
+        <br><br>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

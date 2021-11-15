@@ -7,7 +7,7 @@
     <br><br>
     {% for link in links %}
     <div class="pushed">
-        <p>https://allnewsnow.online/l/{{ link.link }}</p>
+        <p>{{ domain }}/l/{{ link.link }}</p>
         <p>{{ link.url }}</p>
         <a href="{{ url_for('edit', link_url=link.link) }}" class="btn btn-outline-secondary">Edit</a>
         <a href="{{ url_for('delete', link_url=link.link) }}" class="btn btn-outline-danger">Delete</a>

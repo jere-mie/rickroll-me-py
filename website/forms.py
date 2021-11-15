@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField, TextAreaField, PasswordField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Length
 from website.models import Link
 
 class LinkForm(FlaskForm):
@@ -31,4 +31,9 @@ class EditForm(FlaskForm):
     name = StringField('Site Name', validators=[DataRequired()])
     desc = StringField('Description', validators=[DataRequired()])
     image = StringField('Link to Image', validators=[DataRequired()])    
+    submit = SubmitField('Submit')
+
+# Login Form
+class LoginForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=2, max=20)])
     submit = SubmitField('Submit')

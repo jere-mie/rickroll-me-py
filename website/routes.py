@@ -1,11 +1,19 @@
 from flask import render_template, url_for, flash, redirect, request
-from website import app, db
-from website.forms import LinkForm, EditForm
-from website.models import Link
+from website import app, db, login_manager
+from website.forms import LinkForm, EditForm, LoginForm
+from website.models import Link, User
+import json
+import re
+from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 
+@login_manager.user_loader
+def user_loader(username):
+  user = User()
+  user.id = username
+  return user
 
-@app.route('/', methods=['GET'])
 @app.route('/home', methods=['GET'])
+@app.route('/', methods=['GET'])
 def home():
     return render_template('home.html')
 
@@ -13,32 +21,56 @@ def home():
 def about():
     return render_template('about.html')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = LoginForm()
+    with open('config.json') as f:
+        data = json.load(f)
+    if form.validate_on_submit():
+        if form.password.data == data['password']:
+            user = User()
+            user.id = "Rick"
+            login_user(user, remember=True)
+            flash('login worked', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('incorrect password!', 'danger')
+    return render_template('login.html', form=form, data=data)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
 @app.route('/admin', methods=['GET'])
+@login_required
 def admin():
     links = Link.query.all()
-    return render_template('admin.html', links=links)
-
-
+    with open('config.json') as f:
+        data = json.load(f)
+    return render_template('admin.html', links=links, domain=data['domain'])
 
 @app.route('/new', methods=['GET', 'POST'])
 def new():
     form = LinkForm()
     if form.validate_on_submit():
         link = Link(link=form.link.data, title=form.title.data, name = form.name.data, desc=form.desc.data, image=form.image.data, url='https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-        goodlink = link.link.replace(' ','-')
-        goodlink = goodlink.replace('/','_')
-        goodlink = goodlink.replace(':','-')
-        goodlink = goodlink.replace('.','-')
-        goodlink = goodlink.replace('?','-')
-        goodlink = goodlink.replace(',','-')
-        link.link = goodlink
+        link.link = link.link.replace(' ','-')
+        link.link = re.sub(r'[^a-zA-Z0-9-]', '-', link.link)
         db.session.add(link)
         db.session.commit()
-        flash(f'Created link http://allnewsnow.online/l/{link.link}', 'success')
+        # getting config details
+        with open('config.json') as f:
+            data = json.load(f)
+        flash(f"Created link {data['domain']}/l/{link.link}", 'success')
         return redirect(url_for('home'))
     return render_template('new.html', form=form, legend='New Link')
 
 @app.route('/l/<link_url>/edit', methods=['GET', 'POST'])
+@login_required
 def edit(link_url):
     link = Link.query.filter_by(link=link_url).first()
     form = EditForm()
@@ -69,6 +101,7 @@ def redir(link_url):
     return render_template('redir.html', title=link.title, name=link.name, desc=link.desc, image=link.image, url=link.url)
 
 @app.route('/l/<link_url>/delete', methods=['GET','POST'])
+@login_required
 def delete(link_url):
     link = Link.query.filter_by(link=link_url).first()
     db.session.delete(link)

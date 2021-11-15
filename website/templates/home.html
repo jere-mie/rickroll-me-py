@@ -1,12 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
   <div class="container" style="background-color:white;">
-    <h1 class="center display-4">Custom Metadata URL Redirect Prank</h1>
-    <p class="lead center">Basically the easiest way to make convincing rick rolls </p>
+    <h1 class="center display-4">Rickroll Me</h1>
+    <p class="lead center">The Easiest way to make convincing rick rolls </p>
     <hr class="my-4">
-    <p class="center">Try it out now, create a new redirect and then paste the link in somewhere such as discord to fool your friends!</p>
+    <p class="center">Try it out now, create a new redirect and then paste the link in somewhere such as Discord to fool your friends!</p>
     <p class="center"><a class="btn btn-outline-secondary btn-lg" href="{{ url_for('new') }}" role="button">New Redirect</a></p>
-    <h5 class="center">UPDATE: In an effort to ensure the safety of those using this site, we will no longer allow users to specify where their link will redirect to. All links will now redirect to a familiar YouTube video, even links you have created in the past. <br> The safety of those using this site is of the utmost importance to the developers of this project.</h5>
     <p class="center">
       <img src="{{ url_for('static', filename='logo.png') }}" height="250px">
     </p>
