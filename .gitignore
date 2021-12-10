@@ -6,6 +6,7 @@ config.json
 venv/
 website/__pycache__/
 website/site.db
+data.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

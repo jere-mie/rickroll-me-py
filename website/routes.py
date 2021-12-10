@@ -105,6 +105,8 @@ def edit(link_url):
 @app.route('/l/<link_url>', methods=['GET'])
 def redir(link_url):
     link = Link.query.filter_by(link=link_url).first()
+    link.clicks +=1
+    db.session.commit()
     return render_template('redir.html', title=link.title, name=link.name, desc=link.desc, image=link.image, url=link.url)
 
 @app.route('/l/<link_url>/delete', methods=['GET','POST'])

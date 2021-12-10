@@ -8,9 +8,10 @@ class Link(db.Model):
     name = db.Column(db.String(100), nullable=False)
     desc = db.Column(db.String(100), nullable=False)
     image = db.Column(db.String(100), nullable=False)
+    clicks = db.Column(db.Integer, default=0)
     
     def __repr__(self):
-        return f"Post: {self.title}, Posted By: {self.author}"
+        return f"{self.link}\t{self.url}\t{self.title}\t{self.name}\t{self.desc}\t{self.image}\t"
 
 class User(UserMixin):
     pass
