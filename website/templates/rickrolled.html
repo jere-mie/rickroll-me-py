@@ -2,12 +2,12 @@
 {% block content %}
   <div class="container" style="background-color:white;">
     <h1 class="center display-4">You've been Rick Rolled!</h1>
-    <h4 class="center">Want to Rick Roll someone else? Want to get some revenge? <br/>
-      Create your own custom Rick Roll by clicking the button below!</h4>
+    <p class="center">Want to Rick Roll someone else? Want to get some revenge? <br/>
+      Create your own custom Rick Roll by clicking the button below!</p>
     <hr class="my-4">
-    <p class="center"><a class="btn btn-outline-secondary btn-lg" href="{{ url_for('new') }}" role="button">New Rick Roll</a></p>
+    <p class="center"><a class="btn btn-outline-secondary" href="{{ url_for('new') }}" role="button">New Rick Roll</a></p>
     <p class="center">
-      <iframe width="720" height="500" src="https://www.youtube.com/embed/O91DT1pR1ew?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img src="{{ url_for('static', filename='rick-roll.gif') }}" alt="" style="width: 75%;">
     </p>
 
   </div>
