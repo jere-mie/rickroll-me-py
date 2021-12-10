@@ -17,7 +17,7 @@
     <p class="center">First, you'll need to go to the <a href="{{ url_for('new') }}">new link</a> page, where you can customize a new link.</p>
     <p class="center">You'll be greeted by a form with the following fields:</p>
     <ul>
-        <br><li><h4 class="thin">Custom URL Ending</h4>This will be the part after the domain, like so: allnewsnow.online/l/[your_link_here]</li>
+        <br><li><h4 class="thin">Custom URL Ending</h4>This will be the part after the domain, like so: {{ domain }}/l/[your_link_here]</li>
         <br><li><h4 class="thin">Site Name</h4>The name of the supposed website you want to use, for example, "News Today"</li>
         <br><li><h4 class="thin">Site Title</h4>This would be the title of an article or such, for example, "New iPhone Ditches Charging Port"</li>
         <br><li><h4 class="thin">Description</h4>A description of what's on the website, usually one or two sentences</li>
@@ -26,7 +26,7 @@
     <br><br>
     <h2 class="thin center">Now It's Time to Create Your First Link!</h2>
     <br>
-    <p class="center"><a class="btn btn-outline-secondary btn-lg" href="{{ url_for('new') }}" role="button">New Redirect</a></p>
+    <p class="center"><a class="btn btn-outline-secondary btn-lg" href="{{ url_for('new') }}" role="button">New Rick Roll</a></p>
 
   </div>
 

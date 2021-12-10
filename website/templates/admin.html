@@ -1,21 +1,30 @@
 {% extends 'layout.html' %}
 {% block content %}
   <div class="container" style="background-color:white;">
-    <h1 class="center display-4">All Links</h1>
-    <p class="lead center">Here Is Where You Find All Links</p>
+    <h1 class="center display-4">Admin Panel</h1>
+    <p class="lead center">View, edit, copy, and delete all links</p>
+    <p class="lead center">Total links: {{ links|length }}</p>
     <hr class="my-4">
     <br><br>
     {% for link in links %}
     <div class="pushed">
-        <p>{{ domain }}/l/{{ link.link }}</p>
-        <p>{{ link.url }}</p>
-        <a href="{{ url_for('edit', link_url=link.link) }}" class="btn btn-outline-secondary">Edit</a>
-        <a href="{{ url_for('delete', link_url=link.link) }}" class="btn btn-outline-danger">Delete</a>
+      <p><b>Name: </b>{{ link.name }}</p>
+      <p><b>Title: </b>{{ link.title }}</p>
+      <p><b>Description: </b>{{ link.desc }}</p>
+      <p><b>Link: </b>{{ domain }}/l/{{ link.link }}</p>
+      <button class="btn btn-success" onclick="copyLink('{{ domain }}/l/{{ link.link }}')">Copy</button>
+      <a href="{{ url_for('edit', link_url=link.link) }}" class="btn btn-warning">Edit</a>
+      <a href="{{ url_for('delete', link_url=link.link) }}" class="btn btn-danger">Delete</a>
     </div>
     <hr class="my-4">    
     {% endfor %}
   </div>
 
-
+  <script>
+    function copyLink(text) {
+      navigator.clipboard.writeText(text);
+      alert('Copied: ' + text);
+    }
+  </script>
 
 {% endblock %}

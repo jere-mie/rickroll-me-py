@@ -2,10 +2,11 @@
 {% block content %}
   <div class="container" style="background-color:white;">
     <h1 class="center display-4">Rickroll Me</h1>
-    <p class="lead center">The Easiest way to make convincing rick rolls </p>
+    <h4 class="thin center">The Easiest way to make convincing rick rolls </h4>
     <hr class="my-4">
-    <p class="center">Try it out now, create a new redirect and then paste the link in somewhere such as Discord to fool your friends!</p>
-    <p class="center"><a class="btn btn-outline-secondary btn-lg" href="{{ url_for('new') }}" role="button">New Redirect</a></p>
+    <h5 class="center">Try it out now, create a new redirect and then paste the link in somewhere such as Discord to fool your friends!</h5>
+    <br/>
+    <p class="center"><a class="btn btn-outline-secondary btn-lg" href="{{ url_for('new') }}" role="button">New Rick Roll</a></p>
     <p class="center">
       <img src="{{ url_for('static', filename='logo.png') }}" height="250px">
     </p>

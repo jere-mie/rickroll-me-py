@@ -19,7 +19,13 @@ def home():
 
 @app.route('/about', methods=['GET'])
 def about():
-    return render_template('about.html')
+    with open('config.json') as f:
+        data = json.load(f)
+    return render_template('about.html', domain=data['domain'])
+
+@app.route('/rickrolled', methods=['GET'])
+def rickrolled():
+    return render_template('rickrolled.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -33,10 +39,10 @@ def login():
             user = User()
             user.id = "Rick"
             login_user(user, remember=True)
-            flash('login worked', 'success')
+            flash('Successfully logged in!', 'success')
             return redirect(url_for('home'))
         else:
-            flash('incorrect password!', 'danger')
+            flash('Incorrect password!', 'danger')
     return render_template('login.html', form=form, data=data)
 
 @app.route('/logout')
@@ -76,6 +82,8 @@ def edit(link_url):
     form = EditForm()
     if form.validate_on_submit():
         link.link = form.link.data
+        link.link = link.link.replace(' ','-')
+        link.link = re.sub(r'[^a-zA-Z0-9-]', '-', link.link)
         link.url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
         link.title = form.title.data
         link.name = form.name.data
@@ -87,7 +95,6 @@ def edit(link_url):
         return redirect(url_for('home'))
     elif request.method == 'GET':
         form.link.data = link.link
-        # form.url.data = link.url
         form.title.data = link.title
         form.name.data = link.name
         form.desc.data = link.desc
