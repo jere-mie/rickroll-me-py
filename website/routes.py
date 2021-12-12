@@ -55,9 +55,10 @@ def logout():
 @login_required
 def admin():
     links = Link.query.all()
+    totClicks = sum([link.clicks for link in links])
     with open('config.json') as f:
         data = json.load(f)
-    return render_template('admin.html', links=links, domain=data['domain'])
+    return render_template('admin.html', links=links, domain=data['domain'], totClicks=totClicks)
 
 @app.route('/new', methods=['GET', 'POST'])
 def new():

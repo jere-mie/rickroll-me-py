@@ -4,6 +4,7 @@
     <h1 class="center display-4">Admin Panel</h1>
     <p class="lead center">View, edit, copy, and delete all links</p>
     <p class="lead center">Total links: {{ links|length }}</p>
+    <p class="lead center">Total clicks: {{ totClicks }}</p>
     <hr class="my-4">
     <br><br>
     {% for link in links %}
