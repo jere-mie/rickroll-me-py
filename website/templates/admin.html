@@ -14,7 +14,7 @@
       <p><b>Title: </b>{{ link.title }}</p>
       <p><b>Description: </b>{{ link.desc }}</p>
       <p><b>Link: </b>{{ domain }}/l/{{ link.link }}</p>
-      <button id="{{ link.link }}" class="btn btn-success" onclick="copyLink('{{ domain }}/l/{{ link.link }}', '{{ link.link }}')">Copy</button>
+      <button id="cop-{{ link.link }}" class="btn btn-success" onclick="copyLink('{{ domain }}/l/{{ link.link }}', '{{ link.link }}')">Copy</button>
       <a href="{{ url_for('edit', link_url=link.link) }}" class="btn btn-warning">Edit</a>
       <button id="del-{{ link.link }}" class="btn btn-danger" onclick="linkDel('{{ link.link }}')">Delete</button>
       <a id="conf-{{ link.link }}" href="{{ url_for('delete', link_url=link.link) }}" class="btn btn-danger hidden">Confirm</a>
@@ -26,7 +26,7 @@
   <script>
     function copyLink(text, id) {
       navigator.clipboard.writeText(text);
-      let copyBtn = document.querySelector(`#${id}`);
+      let copyBtn = document.querySelector(`#cop-${id}`);
       copyBtn.innerText = 'Copied'
       setTimeout(()=>{copyBtn.innerText = 'Copy'}, 1000)
     }
