@@ -16,7 +16,8 @@
       <p><b>Link: </b>{{ domain }}/l/{{ link.link }}</p>
       <button id="{{ link.link }}" class="btn btn-success" onclick="copyLink('{{ domain }}/l/{{ link.link }}', '{{ link.link }}')">Copy</button>
       <a href="{{ url_for('edit', link_url=link.link) }}" class="btn btn-warning">Edit</a>
-      <a href="{{ url_for('delete', link_url=link.link) }}" class="btn btn-danger">Delete</a>
+      <button id="del-{{ link.link }}" class="btn btn-danger" onclick="linkDel('{{ link.link }}')">Delete</button>
+      <a id="conf-{{ link.link }}" href="{{ url_for('delete', link_url=link.link) }}" class="btn btn-danger hidden">Confirm</a>
     </div>
     <hr class="my-4">    
     {% endfor %}
@@ -28,6 +29,22 @@
       let copyBtn = document.querySelector(`#${id}`);
       copyBtn.innerText = 'Copied'
       setTimeout(()=>{copyBtn.innerText = 'Copy'}, 1000)
+    }
+    function linkDel(id) {
+      let delbtn = document.getElementById(`del-${id}`);
+      let confbtn = document.getElementById(`conf-${id}`);
+      if(delbtn.innerText == 'Delete'){
+        delbtn.classList.remove('btn-danger');
+        delbtn.classList.add('btn-secondary');
+        delbtn.innerText = 'Cancel';        
+        confbtn.classList.remove('hidden');
+
+      }else{
+        delbtn.classList.add('btn-danger');
+        delbtn.classList.remove('btn-secondary');
+        delbtn.innerText = 'Delete';
+        confbtn.classList.add('hidden');
+      }
     }
   </script>
 
