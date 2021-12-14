@@ -27,8 +27,15 @@
     function copyLink(text, id) {
       navigator.clipboard.writeText(text);
       let copyBtn = document.querySelector(`#cop-${id}`);
-      copyBtn.innerText = 'Copied'
-      setTimeout(()=>{copyBtn.innerText = 'Copy'}, 1000)
+      copyBtn.classList.add('btn-primary');
+      copyBtn.classList.remove('btn-success');      
+      copyBtn.innerText = 'Copied';
+
+      setTimeout(()=>{
+        copyBtn.innerText = 'Copy';
+        copyBtn.classList.add('btn-success');
+        copyBtn.classList.remove('btn-primary');
+      }, 750);
     }
     function linkDel(id) {
       let delbtn = document.getElementById(`del-${id}`);
