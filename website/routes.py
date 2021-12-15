@@ -5,6 +5,7 @@ from website.models import Link, User
 import json
 import re
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
+from better_profanity import profanity
 
 @login_manager.user_loader
 def user_loader(username):
@@ -65,8 +66,20 @@ def new():
     form = LinkForm()
     if form.validate_on_submit():
         link = Link(link=form.link.data, title=form.title.data, name = form.name.data, desc=form.desc.data, image=form.image.data, url='https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+        if profanity.contains_profanity(f'{link.link} {link.title} {link.name} {link.desc}'):
+            flash('NOTE: EXCESSIVE PROFANITY IS NOT PERMITTED ON THIS PLATFORM. CONTINUED EXCESSIVE PROFANITY MAY RESULT IN AN IP BAN FROM THIS PLATFORM', 'danger')
+        link.link = profanity.censor(link.link, 'X')
+        link.title = profanity.censor(link.title, 'X')
+        link.name = profanity.censor(link.name, 'X')
+        link.desc = profanity.censor(link.desc, 'X')
         link.link = link.link.replace(' ','-')
         link.link = re.sub(r'[^a-zA-Z0-9-]', '-', link.link)
+
+        # ensure uniqueness of link
+        existinglink = Link.query.filter_by(link=link.link).first()
+        while existinglink:
+            link.link = link.link + 'X'
+            existinglink = Link.query.filter_by(link=link.link).first()
         db.session.add(link)
         db.session.commit()
         # getting config details
