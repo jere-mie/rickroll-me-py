@@ -124,6 +124,8 @@ def edit(link_url):
 @app.route('/l/<link_url>', methods=['GET'])
 def redir(link_url):
     link = Link.query.filter_by(link=link_url).first()
+    if not link:
+        return '<h1>Either you manually typed an incorrect link or the link you clicked was removed for exsessive profanity.</h1>'
     link.clicks +=1
     db.session.commit()
     return render_template('redir.html', title=link.title, name=link.name, desc=link.desc, image=link.image, url=link.url)
