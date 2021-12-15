@@ -66,6 +66,11 @@ def new():
     form = LinkForm()
     if form.validate_on_submit():
         link = Link(link=form.link.data, title=form.title.data, name = form.name.data, desc=form.desc.data, image=form.image.data, url='https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+        with open('bad-words.txt', 'r') as f:
+            wordlist = [i.strip() for i in f.readlines()]
+        print(wordlist)
+        profanity.load_censor_words()
+        profanity.add_censor_words(wordlist)
         if profanity.contains_profanity(f'{link.link} {link.title} {link.name} {link.desc}'):
             flash('NOTE: EXCESSIVE PROFANITY IS NOT PERMITTED ON THIS PLATFORM. CONTINUED EXCESSIVE PROFANITY MAY RESULT IN AN IP BAN FROM THIS PLATFORM', 'danger')
         link.link = profanity.censor(link.link, 'X')

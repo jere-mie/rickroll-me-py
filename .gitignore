@@ -7,6 +7,7 @@ venv/
 website/__pycache__/
 website/site.db
 data.txt
+bad-words.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
