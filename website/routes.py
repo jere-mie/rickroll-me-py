@@ -56,6 +56,7 @@ def logout():
 @login_required
 def admin():
     links = Link.query.all()
+    links.reverse()
     totClicks = sum([link.clicks for link in links])
     with open('config.json') as f:
         data = json.load(f)
